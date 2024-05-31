@@ -34,9 +34,10 @@ while(True):
     # 判断当前秒数是不是0，实现间隔一分钟刷新页面，防止掉登录
     if(datetime.datetime.now().second == 0):
         page.refresh() # DrissionPage的页面刷新方法，内置了wait.load_start()程序会自动等待加载结束
+        # 等待全选按钮加载
+        page.wait.ele_displayed('x://*[@id="J_SelectAll1"]/div/label',timeout=60)
         # 再次全选购物车
         page.ele('x://*[@id="J_SelectAll1"]/div/label').click()
-
 
 # 测试时的程序暂停
 input()
