@@ -26,6 +26,7 @@ while(True):
             # 点击结算按钮
             page.ele('x://*[@id="J_Go"]/span').click()
             # 下单商品
+            page.wait.ele_displayed('提交订单', timeout=60) # 等待提交订单按钮完全加载
             page.ele('提交订单').click()
             # 自动填充密码(需要修改成你自己的支付密码)
             # page.ele('x://*[@id="payPassword_rsainput"]').input("123456")
