@@ -5,7 +5,7 @@ import datetime
 page = ChromiumPage(9223)
 
 # 指定秒杀时间
-kill_time = "2024-05-31 21:25:00.00000000"
+kill_time = "2024-06-01 10:25:00.00000000"
 
 # 打开淘宝网页
 page.get("https://www.taobao.com")
@@ -38,15 +38,15 @@ while(True):
             print("%s\n发生了错误，请手动完成后续步骤"%err+input())
     # 判断当前秒数是不是0，实现间隔一分钟刷新页面，防止掉登录
     if(datetime.datetime.now().second == 0):
-        page.refresh() # DrissionPage的页面刷新方法，内置了wait.load_start()程序会自动等待加载结束
         while(True):
+            page.refresh() # DrissionPage的页面刷新方法，内置了wait.load_start()程序会自动等待加载结束
             try:
                 # 等待全选按钮加载
                 page.wait.ele_displayed('x://*[@id="J_SelectAll1"]/div/label')
-                break
+                break # 按钮加载成功说明没有问题，跳出循环
             except:
-                # 没有成功加载按钮说明出现了错误，无论什么错误都再次刷新页面
-                page.refresh() # DrissionPage的页面刷新方法，内置了wait.load_start()程序会自动等待加载结束
+                # 没有成功加载按钮说明出现了错误，无论什么错误都继续循环再次刷新页面
+                continue
         # 再次全选购物车
         page.ele('x://*[@id="J_SelectAll1"]/div/label').click()
 
