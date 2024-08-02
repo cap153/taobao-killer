@@ -12,9 +12,9 @@ page.get("https://www.taobao.com")
 # 点击购物车
 page.ele('x://*[@id="J_MiniCart"]/div[1]/a/span[2]').click()
 # 等待登录完成，直到购物车全选按钮出现，超时时间我设置为1分钟
-page.wait.ele_displayed('x://*[@id="J_SelectAll1"]/div/label',timeout=60)
+page.wait.ele_displayed('x://*[@id="mainHeaderContainer_1"]/div[2]/label/span[1]/input',timeout=60)
 # 点击购物车全选按钮
-page.ele('x://*[@id="J_SelectAll1"]/div/label').click()
+page.ele('x://*[@id="mainHeaderContainer_1"]/div[2]/label/span[1]/input').click()
 
 while(True):
     # 获取当前时间
@@ -24,7 +24,7 @@ while(True):
     if(now>kill_time):
         try:
             # 点击结算按钮
-            page.ele('x://*[@id="J_Go"]/span').click()
+            page.ele('x://*[@id="settlementContainer_1"]/div[4]/div/div[2]').click()
             # 下单商品
             page.wait.ele_displayed('提交订单', timeout=60) # 等待提交订单按钮完全加载
             page.ele('提交订单').click()
@@ -42,13 +42,13 @@ while(True):
             page.refresh() # DrissionPage的页面刷新方法，内置了wait.load_start()程序会自动等待加载结束
             try:
                 # 等待全选按钮加载
-                page.wait.ele_displayed('x://*[@id="J_SelectAll1"]/div/label')
+                page.wait.ele_displayed('x://*[@id="mainHeaderContainer_1"]/div[2]/label/span[1]/input')
                 break # 按钮加载成功说明没有问题，跳出循环
             except:
                 # 没有成功加载按钮说明出现了错误，无论什么错误都继续循环再次刷新页面
                 continue
         # 再次全选购物车
-        page.ele('x://*[@id="J_SelectAll1"]/div/label').click()
+        page.ele('x://*[@id="mainHeaderContainer_1"]/div[2]/label/span[1]/input').click()
 
 # 成功的信息输出和测试时的程序暂停
 input('恭喜，抢购成功')
