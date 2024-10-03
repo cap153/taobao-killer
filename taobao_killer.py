@@ -14,7 +14,7 @@ page.ele('x://*[@id="J_MiniCart"]/div[1]/a/span[2]').click()
 # 等待登录完成，直到购物车全选按钮出现，超时时间我设置为1分钟
 page.wait.ele_displayed('x://*[@id="mainHeaderContainer_1"]/div[2]/label/span[1]/input',timeout=60)
 # 点击购物车全选按钮
-page.ele('x://*[@id="mainHeaderContainer_1"]/div[2]/label/span[1]/input').click()
+page.ele('全选').click()
 
 while(True):
     # 获取当前时间
