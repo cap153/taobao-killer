@@ -1,20 +1,18 @@
-from DrissionPage import ChromiumPage
+from DrissionPage import Chromium
 import datetime
 
 # 创建对象
-page = ChromiumPage(9223)
+page = Chromium(9223).latest_tab
 
 # 指定秒杀时间
 kill_time = "2024-06-01 10:25:00.00000000"
 
 # 打开淘宝网页
-page.get("https://www.taobao.com")
-# 点击购物车
-page.ele('x://*[@id="J_MiniCart"]/div[1]/a/span[2]').click()
+page.get("https://cart.taobao.com/")
 # 等待登录完成，直到购物车全选按钮出现，超时时间我设置为1分钟
 page.wait.ele_displayed('全选',timeout=60)
 # 点击购物车全选按钮
-page.ele('全选').click()
+page.ele('全选',index=-1).click()
 
 while(True):
     # 获取当前时间
@@ -48,7 +46,7 @@ while(True):
                 # 没有成功加载按钮说明出现了错误，无论什么错误都继续循环再次刷新页面
                 continue
         # 再次全选购物车
-        page.ele('全选').click()
+        page.ele('全选',index=-1).click()
 
 # 成功的信息输出和测试时的程序暂停
 input('恭喜，抢购成功')
