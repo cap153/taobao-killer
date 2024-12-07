@@ -4,8 +4,8 @@ import datetime
 # 创建对象
 page = Chromium(9223).latest_tab
 
-# 指定秒杀时间
-kill_time = "2024-06-01 10:25:00.00000000"
+# 指定秒杀时间，格式为“时:分:秒.毫秒”，无需设定日期
+kill_time = "20:00:00.00000000"
 
 # 打开淘宝网页
 page.get("https://cart.taobao.com/")
@@ -16,7 +16,7 @@ page.ele('全选',index=-1).click()
 
 while(True):
     # 获取当前时间
-    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+    now = datetime.datetime.now().strftime('%H:%M:%S.%f')
     print(now) # 打印当前时间测试
     # 判断当前时间是否到达了秒杀时间
     if(now>kill_time):
