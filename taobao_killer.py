@@ -10,9 +10,7 @@ kill_time = "20:00:00.00000000"
 # 打开淘宝网页
 page.get("https://cart.taobao.com/")
 # 等待登录完成，直到购物车全选按钮出现，超时时间我设置为1分钟
-page.wait.ele_displayed('全选',timeout=60)
-# 点击购物车全选按钮
-page.ele('全选',index=-1).click()
+page.ele('全选',timeout=60,index=-1).click()
 
 while(True):
     # 获取当前时间
@@ -22,10 +20,9 @@ while(True):
     if(now>kill_time):
         try:
             # 点击结算按钮
-            page.ele('x://*[@id="settlementContainer_1"]/div[4]/div/div[2]').click()
+            page.ele('结算',index=-1).click()
             # 下单商品
-            page.wait.ele_displayed('提交订单', timeout=60) # 等待提交订单按钮完全加载
-            page.ele('提交订单').click()
+            page.ele('提交订单',timeout=60).click()
             # 自动填充密码(需要修改成你自己的支付密码)
             # page.ele('x://*[@id="payPassword_rsainput"]').input("123456")
             # 确定
