@@ -26,7 +26,7 @@ while(True):
             # 点击结算按钮
             page.ele('结算',index=-1).click()
             # 下单商品
-            # page.ele('提交订单',timeout=60).click()
+            page.ele('提交订单',timeout=60).click()
             # 自动填充密码(需要修改成你自己的支付密码)
             # page.ele('x://*[@id="payPassword_rsainput"]').input("123456")
             # 确定
