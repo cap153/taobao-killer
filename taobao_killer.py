@@ -5,7 +5,7 @@ import datetime
 page = Chromium(9223).latest_tab
 
 # 指定秒杀时间，格式为“时:分:秒.毫秒”，无需设定日期
-kill_time = "20:00:00.00000000"
+kill_time = "19:00:00.00000000"
 
 # 打开淘宝网页
 page.get("https://cart.taobao.com/")
@@ -19,10 +19,14 @@ while(True):
     # 判断当前时间是否到达了秒杀时间
     if(now>kill_time):
         try:
+            # 按需解开注释，二次判断商品是否全选(根据全选框class是否变成ant-checkbox ant-checkbox-checked来判断是否成功全选)
+            # while page.ele('.ant-checkbox',timeout=0.1):
+                # 没有全选的情况，点击购物车全选按钮
+                # page.ele('全选',index=-1).click()
             # 点击结算按钮
             page.ele('结算',index=-1).click()
             # 下单商品
-            page.ele('提交订单',timeout=60).click()
+            # page.ele('提交订单',timeout=60).click()
             # 自动填充密码(需要修改成你自己的支付密码)
             # page.ele('x://*[@id="payPassword_rsainput"]').input("123456")
             # 确定
